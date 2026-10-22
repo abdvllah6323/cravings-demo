@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cravins Ice Cream and Eatery | Website Concept</title>
+  <meta name="description" content="An independent website concept for Cravins Ice Cream and Eatery. Crave for more…">
+  <meta name="theme-color" content="#D6D7D9">
+  <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+
+  <!-- Fonts: Outfit (headings) + DM Sans (body). System fonts are the fallback. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Outfit:wght@500;700;800&display=swap">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/catalogue.css">
+  <link rel="stylesheet" href="css/cart.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="css/locations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Floating clay navigation -->
+  <header class="site-header">
+    <nav class="clay-nav" aria-label="Main">
+      <a class="brand" href="#home" aria-label="Cravins, back to top">
+        <img class="brand__badge" src="assets/logo/cravins-logo.svg" alt="" width="44" height="44">
+        <img class="brand__wordmark" src="assets/logo/cravins-wordmark.svg" alt="Cravins" width="104" height="28">
+      </a>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#locations">Locations</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="clay-btn clay-btn--ivory clay-btn--round cart-btn" type="button" aria-label="Open cart, 0 items">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>
+          <span class="cart-count" data-cart-count aria-hidden="true">0</span>
+        </button>
+        <button class="clay-btn clay-btn--ivory clay-btn--round menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+          <span class="menu-toggle__bars" aria-hidden="true"></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero__copy">
+        <p class="eyebrow clay-pill">Ice Cream and Eatery</p>
+        <h1 id="hero-title"><mark>GOOD</mark> FOOD.<br><mark>GREAT</mark> CRAVINGS.</h1>
+        <p class="lead">Cold scoops, delicious bites, and little moments of happiness. Whatever you're craving, we've got something special.</p>
+        <div class="hero__cta">
+          <a class="clay-btn clay-btn--primary" href="#menu">Explore Our Menu</a>
+          <a class="clay-btn clay-btn--ivory" href="#locations">Find a Location</a>
+        </div>
+      </div>
+
+      <div class="hero__visual">
+        <span class="decor decor--cherry" aria-hidden="true"></span>
+        <span class="decor decor--orange" aria-hidden="true"></span>
+        <span class="decor decor--pistachio" aria-hidden="true"></span>
+        <span class="decor decor--strawberry" aria-hidden="true"></span>
+        <span class="decor sprinkle sprinkle--pink" aria-hidden="true"></span>
+        <span class="decor sprinkle sprinkle--blue" aria-hidden="true"></span>
+        <span class="decor sprinkle sprinkle--yellow" aria-hidden="true"></span>
+        <span class="decor sprinkle sprinkle--green" aria-hidden="true"></span>
+
+        <figure class="photo photo--main">
+          <img src="assets/images/hero/hero-main.webp" width="720" height="479" fetchpriority="high"
+               alt="Three waffle cones of ice cream in a display case: chocolate, strawberry and a fruit swirl.">
+        </figure>
+
+        <figure class="photo photo--secondary">
+          <img src="assets/images/hero/hero-secondary.webp" width="540" height="675" loading="eager"
+               alt="A hand holding a waffle cone with two scoops of vanilla ice cream and caramel sauce.">
+        </figure>
+
+        <div class="tag-card" role="note">
+          <img src="assets/logo/cravins-logo.svg" alt="" width="40" height="40">
+          <span>Crave for more…</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu: category cards and product grid are rendered by js/catalogue.js from js/products.js -->
+    <section class="menu" id="menu" aria-labelledby="menu-title">
+      <header class="section-head">
+        <p class="eyebrow clay-pill">Our Menu</p>
+        <h2 id="menu-title">What are you craving?</h2>
+        <p class="section-lead">Pick a category, or scroll through everything.</p>
+      </header>
+
+      <div class="category-grid" id="category-grid" role="group" aria-label="Menu categories"></div>
+
+      <div class="catalogue-bar" id="catalogue-bar">
+        <p id="catalogue-status" aria-live="polite">Showing everything on the menu</p>
+        <button class="clay-btn clay-btn--ivory clay-btn--small" type="button" id="clear-filter" hidden>Show everything</button>
+      </div>
+
+      <div class="product-grid" id="product-grid"></div>
+      <p class="visually-hidden" id="sr-live" aria-live="polite"></p>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <header class="section-head">
+        <p class="eyebrow clay-pill">About Us</p>
+        <h2 id="about-title">Crave for more&hellip;</h2>
+      </header>
+      <p class="about__copy">Cravins is an ice cream and eatery for the little moments that deserve something special. Come for a cold scoop, stay for the shawarma, shakes, cakes and snacks, and find us in branches across the north.</p>
+      <div class="about__tiles">
+        <article class="about-tile">
+          <span class="about-tile__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11a5 5 0 0 1 10 0"/><path d="M6 11h12l-6 11z"/></svg></span>
+          <h3>12 flavours</h3>
+          <p>From Biscottino to Pistachio, pick your flavour and your scoops.</p>
+        </article>
+        <article class="about-tile">
+          <span class="about-tile__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h16M5 12a7 7 0 0 0 14 0M9 4v4M12 3v5M15 4v4"/></svg></span>
+          <h3>More than ice cream</h3>
+          <p>Shawarma, milkshakes, pastries, cakes and cold drinks on one menu.</p>
+        </article>
+        <article class="about-tile">
+          <span class="about-tile__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+          <h3>13 branches</h3>
+          <p>Maiduguri, Yola, Gombe, Bauchi, Damaturu, Jos, Biu and Potiskum.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Locations: cards are rendered by js/locations.js from js/branches.js -->
+    <section class="locations" id="locations" aria-labelledby="locations-title">
+      <header class="section-head">
+        <p class="eyebrow clay-pill">Find Us</p>
+        <h2 id="locations-title">Our locations</h2>
+        <p class="section-lead">Call a branch or message it on WhatsApp.</p>
+      </header>
+      <div class="state-filter" id="state-filter" role="group" aria-label="Filter branches by state"></div>
+      <p class="branch-status" id="branch-status" aria-live="polite"></p>
+      <ul class="branch-grid" id="branch-grid"></ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__panel">
+      <div class="site-footer__brand">
+        <img src="assets/logo/cravins-wordmark.svg" alt="Cravins" width="150" height="40">
+        <p class="site-footer__tag">Crave for more&hellip;</p>
+      </div>
+      <nav aria-label="Footer">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#locations">Locations</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h3>Follow us</h3>
+        <ul>
+          <li><a class="clay-btn clay-btn--ivory clay-btn--small" href="https://www.instagram.com/cravinsicecream_ng" target="_blank" rel="noopener" aria-label="Cravins on Instagram, @cravinsicecream_ng (opens in a new tab)">Instagram &middot; @cravinsicecream_ng</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="site-footer__fine">&copy; Cravins Ice Cream and Eatery</p>
+  </footer>
+
+  <!-- Slide-out cart (behaviour in js/cart.js) -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-panel" id="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+    <header class="cart-panel__head">
+      <h2 id="cart-title">Your cart</h2>
+      <button class="clay-btn clay-btn--ivory clay-btn--round" type="button" id="cart-close" aria-label="Close cart">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </header>
+    <div class="cart-panel__body" id="cart-body"></div>
+    <footer class="cart-panel__foot">
+      <div class="cart-total"><span>Total</span><strong id="cart-total">&#8358;0</strong></div>
+      <button class="clay-btn clay-btn--primary" type="button" id="cart-checkout" disabled>Checkout</button>
+      <button class="cart-clear" type="button" id="cart-clear" hidden>Clear cart</button>
+    </footer>
+  </aside>
+
+  <script src="js/products.js" defer></script>
+  <script src="js/catalogue.js" defer></script>
+  <script src="js/branches.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+  <script src="js/locations.js" defer></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>

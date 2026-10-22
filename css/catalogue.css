@@ -1,0 +1,348 @@
+/* ==========================================================================
+   Cravins: menu catalogue (Phase 2)
+   Category cards, product cards, ice cream builder, "Photo pending" tiles.
+   ========================================================================== */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] { display: none !important; }
+
+.clay-btn--small {
+  min-height: 44px;
+  padding: 0 18px;
+  font-size: 0.9375rem;
+}
+
+/* ---------- Section head --------------------------------------------- */
+.menu {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 72px var(--gutter) 24px;
+}
+
+.section-head { text-align: center; }
+.section-head .eyebrow { margin-bottom: 18px; }
+.section-head h2 { font-size: clamp(2.1rem, 8vw, 3.75rem); line-height: 1.05; }
+.section-lead {
+  margin-top: 14px;
+  font-size: 1.0625rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Category cards ------------------------------------------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 36px;
+}
+
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 2px;
+  padding: 8px 8px 14px;
+  border: 0;
+  border-radius: 28px;
+  text-align: left;
+  cursor: pointer;
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow-sm), var(--clay-highlight);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.category-card:hover { transform: translateY(-3px); }
+.category-card:active { transform: translateY(1px) scale(0.985); box-shadow: var(--clay-pressed); }
+
+/* Selected: raised orange clay with a clear tick, so it never relies on colour alone. */
+.category-card.is-active {
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange) 50%, var(--brand-orange-lo));
+  box-shadow:
+    6px 8px 15px rgba(110, 62, 8, 0.34),
+    -4px -4px 11px rgba(255, 255, 255, 0.55),
+    inset 3px 3px 5px rgba(255, 233, 200, 0.85),
+    inset -4px -4px 7px rgba(170, 85, 0, 0.28);
+}
+.category-card.is-active::after {
+  content: "\2713";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand-dark);
+  color: var(--surface);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.category-card { position: relative; }
+
+.category-card__art {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 21px;
+  box-shadow: inset 0 0 0 1px rgba(60, 55, 50, 0.07);
+}
+.category-card__art img { width: 100%; height: 100%; object-fit: cover; }
+.category-card__art--milkshakes { background: radial-gradient(circle at 30% 25%, #FBE3EC, #F2C3D6); color: #A44B73; }
+.category-card__art--shawarma { background: radial-gradient(circle at 30% 25%, #F3DFC8, #E4C29C); color: var(--caramel); }
+.category-card__art--drinks { background: radial-gradient(circle at 30% 25%, #E3EFDF, #C4DAbd); color: #4F7A47; }
+.category-card__icon { width: 42%; height: auto; }
+
+.category-card__name {
+  margin-top: 10px;
+  padding: 0 6px;
+  font-family: var(--font-head);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.15;
+}
+.category-card__count {
+  padding: 0 6px;
+  font-size: 0.8125rem;
+  color: var(--text-soft);
+}
+
+/* ---------- Status bar ------------------------------------------------ */
+.catalogue-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  min-height: 48px;
+  margin-top: 32px;
+  scroll-margin-top: calc(var(--nav-h) + 28px);
+}
+.catalogue-bar p { font-weight: 500; }
+
+/* ---------- Product grid + cards ------------------------------------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 54px 14px;
+  margin-top: 44px;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(14px); }
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 0 10px 14px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+  animation: card-in 380ms var(--ease) both;
+  animation-delay: calc(min(var(--i, 0), 8) * 40ms);
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.product-card:hover { transform: translateY(-4px); }
+
+/* The photo breaks out of the top edge of the card. */
+.product-card__photo {
+  margin: -30px -4px 0;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 22px;
+  background: var(--surface-lo);
+  box-shadow: var(--clay-shadow-sm);
+  transform: rotate(-1.4deg);
+}
+.product-card:nth-child(even) .product-card__photo { transform: rotate(1.2deg); }
+.product-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.product-card__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 14px 4px 0;
+}
+.product-card__cat {
+  font-family: var(--font-head);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--caramel);
+}
+.product-card__name {
+  margin-top: 4px;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.price {
+  font-family: var(--font-head);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+.product-card__foot {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+.clay-btn.is-added {
+  background: linear-gradient(145deg, #D4E6CC, var(--pistachio) 55%, #8FB486);
+  box-shadow:
+    5px 6px 12px rgba(50, 80, 45, 0.3),
+    -3px -3px 9px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 4px rgba(235, 248, 230, 0.85),
+    inset -3px -3px 6px rgba(60, 100, 55, 0.25);
+}
+.clay-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+  filter: saturate(0.6);
+  transform: none;
+}
+
+/* "Photo pending" placeholder: clearly not a real photo. */
+.photo-pending {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(135deg, rgba(120, 125, 135, 0.07) 0 12px, transparent 12px 24px),
+    linear-gradient(145deg, #EFEFEF, #DCDDDF);
+  border: 2px dashed rgba(100, 104, 112, 0.4);
+  border-radius: 22px;
+  color: #5D6068;
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.photo-pending__icon { width: 34px; height: 34px; }
+
+/* ---------- Ice cream builder ---------------------------------------- */
+.product-card--builder {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 22px;
+  padding: 22px 16px 24px;
+}
+.product-card--builder:hover { transform: none; }
+
+.builder__visual { display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.builder__photo {
+  width: min(72%, 320px);
+  margin: 0;
+  padding: 8px;
+  border-radius: 34px;
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+  transform: rotate(-2deg);
+}
+.builder__photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 27px; }
+.builder__photo img.is-swapping { animation: swap 260ms var(--ease); }
+@keyframes swap {
+  from { opacity: 0.35; transform: scale(0.95); }
+}
+.builder__flavour-name {
+  padding: 8px 20px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow-sm), var(--clay-highlight);
+  font-family: var(--font-head);
+  font-size: 1.125rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.builder__controls .product-card__name { font-size: 1.75rem; font-weight: 800; }
+
+.builder__group { margin: 20px 0 0; padding: 0; border: 0; min-width: 0; }
+.builder__group legend {
+  padding: 0;
+  margin-bottom: 10px;
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.flavour-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.scoop-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.addon-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+/* Selectable clay chips (native radios and checkboxes underneath). */
+.chip { position: relative; display: block; }
+.chip input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.chip__face {
+  display: flex;
+  height: 100%;
+  border-radius: 18px;
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow-sm), var(--clay-highlight);
+  font-size: 0.875rem;
+  line-height: 1.15;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.chip:hover .chip__face { transform: translateY(-2px); }
+.chip input:active + .chip__face { transform: translateY(1px) scale(0.98); }
+.chip input:checked + .chip__face {
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange) 50%, var(--brand-orange-lo));
+  box-shadow:
+    inset 4px 4px 8px rgba(130, 70, 5, 0.32),
+    inset -3px -3px 7px rgba(255, 215, 160, 0.6),
+    2px 3px 6px rgba(110, 62, 8, 0.2);
+  font-weight: 700;
+}
+.chip input:focus-visible + .chip__face { outline: 3px solid var(--brand-dark); outline-offset: 3px; }
+
+.chip--flavour .chip__face { align-items: center; gap: 8px; padding: 6px 10px 6px 6px; font-weight: 500; }
+.chip--flavour img { width: 40px; height: 40px; flex: none; border-radius: 50%; object-fit: cover; box-shadow: 1px 2px 4px rgba(60, 55, 50, 0.3); }
+
+.chip--scoop .chip__face,
+.chip--addon .chip__face {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 4px;
+  text-align: center;
+}
+.chip--scoop .chip__face span,
+.chip--addon .chip__face span { font-size: 0.8125rem; }
+
+.builder__foot { margin-top: 22px; }
+.builder__hint { margin-top: 10px; font-size: 0.875rem; color: var(--caramel); font-weight: 500; }
+.builder__hint:empty { display: none; }

@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Cravins: clay components (mobile-first; larger screens in responsive.css)
+   ========================================================================== */
+
+/* ---------- Clay surface + pill -------------------------------------- */
+.clay-surface,
+.clay-pill {
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+
+.clay-pill {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: var(--r-pill);
+  box-shadow: var(--clay-shadow-sm), var(--clay-highlight);
+}
+
+/* ---------- Clay buttons --------------------------------------------- */
+.clay-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: var(--r-pill);
+  font-family: var(--font-head);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--brand-dark);
+  cursor: pointer;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease), filter var(--dur) var(--ease);
+}
+
+.clay-btn--primary {
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange) 50%, var(--brand-orange-lo));
+  box-shadow:
+    7px 8px 16px rgba(110, 62, 8, 0.32),
+    -4px -4px 11px rgba(255, 255, 255, 0.4),
+    inset 3px 3px 5px rgba(255, 233, 200, 0.85),
+    inset -4px -4px 7px rgba(170, 85, 0, 0.28);
+}
+
+.clay-btn--ivory {
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow-sm), var(--clay-highlight);
+}
+
+.clay-btn--round {
+  width: 46px;
+  min-height: 46px;
+  height: 46px;
+  padding: 0;
+}
+
+.clay-btn:hover { transform: translateY(-2px); filter: brightness(1.03); }
+
+/* Buttons sink when pressed. */
+.clay-btn:active {
+  transform: translateY(1px) scale(0.98);
+  filter: none;
+}
+.clay-btn--primary:active {
+  box-shadow:
+    inset 5px 5px 10px rgba(130, 70, 5, 0.45),
+    inset -3px -3px 8px rgba(255, 205, 140, 0.55);
+}
+.clay-btn--ivory:active { box-shadow: var(--clay-pressed); }
+
+/* ---------- Floating navigation -------------------------------------- */
+.site-header {
+  position: fixed;
+  top: 12px;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 var(--gutter);
+  pointer-events: none;
+}
+
+.clay-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: var(--page-max);
+  height: var(--nav-h);
+  margin: 0 auto;
+  padding: 0 9px 0 10px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+  pointer-events: auto;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--r-pill);
+  text-decoration: none;
+}
+.brand__badge { width: 44px; height: 44px; border-radius: 50%; box-shadow: 2px 3px 6px rgba(60, 55, 50, 0.35); }
+.brand__wordmark { width: 104px; height: auto; }
+
+.nav-links a {
+  display: block;
+  padding: 10px 18px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-head);
+  font-weight: 500;
+  font-size: 1.0625rem;
+  text-decoration: none;
+  transition: box-shadow var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.nav-links a:hover { background: rgba(255, 255, 255, 0.55); box-shadow: var(--clay-pressed); }
+
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange-lo));
+  color: var(--brand-dark);
+  font-family: var(--font-head);
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 2px 3px 6px rgba(110, 62, 8, 0.35), inset 1px 1px 2px rgba(255, 233, 200, 0.9);
+}
+
+/* Hamburger (mobile) */
+.menu-toggle__bars,
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+  display: block;
+  width: 20px;
+  height: 2.5px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.menu-toggle__bars { position: relative; }
+.menu-toggle__bars::before,
+.menu-toggle__bars::after { content: ""; position: absolute; left: 0; }
+.menu-toggle__bars::before { top: -6.5px; }
+.menu-toggle__bars::after { top: 6.5px; }
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars { background: transparent; }
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars::before { transform: translateY(6.5px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-toggle__bars::after { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile nav panel. Without JS the links simply stay visible. */
+.nav-links {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  padding: 10px;
+  border-radius: var(--r-md);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+.nav-links a { padding: 14px 18px; }
+
+.js .nav-links {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px) scale(0.98);
+  transform-origin: top center;
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease), visibility 0s linear var(--dur);
+}
+.js .nav-links.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+/* ---------- Hero ----------------------------------------------------- */
+.hero {
+  display: grid;
+  gap: 40px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: calc(var(--nav-h) + 56px) var(--gutter) 24px;
+}
+
+.eyebrow {
+  margin-bottom: 20px;
+  font-family: var(--font-head);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(2.75rem, 12.5vw, 6rem);
+  line-height: 1.12;
+}
+
+/* Highlighted words: raised orange clay chips. Charcoal on orange keeps contrast high. */
+.hero h1 mark {
+  display: inline-block;
+  padding: 0 0.16em 0.02em;
+  margin-right: 0.04em;
+  border-radius: 0.28em;
+  color: var(--brand-dark);
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange) 50%, var(--brand-orange-lo));
+  transform: rotate(-2deg);
+  box-shadow:
+    5px 6px 12px rgba(110, 62, 8, 0.3),
+    -3px -3px 8px rgba(255, 255, 255, 0.35),
+    inset 2px 2px 4px rgba(255, 233, 200, 0.85),
+    inset -3px -3px 5px rgba(170, 85, 0, 0.25);
+}
+
+.lead {
+  max-width: 34rem;
+  margin-top: 24px;
+  font-size: 1.125rem;
+  color: var(--text-soft);
+}
+
+.hero__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+}
+.hero__cta .clay-btn { flex: 1 1 200px; }
+
+/* Hero visual: layered clay frames with floating decorations */
+.hero__visual {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1.04;
+  margin: 0 auto;
+}
+
+.photo {
+  position: absolute;
+  margin: 0;
+  padding: 8px;
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: calc(var(--r-lg) - 8px);
+  box-shadow: inset 0 0 0 1px rgba(60, 55, 50, 0.08);
+}
+
+.photo--main {
+  top: 2%;
+  right: 0;
+  width: 86%;
+  border-radius: var(--r-lg);
+  transform: rotate(1.5deg);
+}
+.photo--main img { aspect-ratio: 4 / 3.2; }
+
+.photo--secondary {
+  left: 0;
+  bottom: 3%;
+  width: 47%;
+  border-radius: var(--r-lg);
+  transform: rotate(-4deg);
+  z-index: 2;
+}
+.photo--secondary img { aspect-ratio: 4 / 5; }
+
+.tag-card {
+  position: absolute;
+  right: 2%;
+  bottom: 9%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px 8px 8px;
+  border-radius: var(--r-pill);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+  font-family: var(--font-head);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  transform: rotate(-2deg);
+}
+.tag-card img { width: 40px; height: 40px; border-radius: 50%; }
+
+/* Decorative clay shapes */
+.decor { position: absolute; z-index: 1; pointer-events: none; }
+
+/* Real fruit cut-outs (transparent WebP). The soft drop-shadow matches the clay light. */
+.decor--cherry,
+.decor--orange,
+.decor--pistachio,
+.decor--strawberry {
+  background: center / contain no-repeat;
+  filter: drop-shadow(5px 8px 8px rgba(60, 55, 50, 0.32));
+}
+
+.decor--cherry {
+  top: -6%;
+  left: 6%;
+  width: 15%;
+  aspect-ratio: 408 / 560;
+  z-index: 3;
+  background-image: url("../assets/images/hero/cherry.webp");
+  animation: float 7s ease-in-out infinite;
+}
+
+.decor--orange {
+  right: -1.5%;
+  top: 56%;
+  width: 17%;
+  aspect-ratio: 539 / 560;
+  z-index: 1;
+  background-image: url("../assets/images/hero/orange.webp");
+  rotate: 14deg;
+  animation: float 8s ease-in-out -2s infinite;
+}
+
+.decor--pistachio {
+  left: -3%;
+  top: 22%;
+  width: 17%;
+  aspect-ratio: 560 / 433;
+  background-image: url("../assets/images/hero/mint.webp");
+  rotate: -12deg;
+  animation: float 9s ease-in-out -4s infinite;
+}
+
+.decor--strawberry {
+  left: 2%;
+  bottom: -5%;
+  width: 12%;
+  aspect-ratio: 411 / 560;
+  z-index: 3;
+  background-image: url("../assets/images/hero/strawberry-a.webp");
+  rotate: -16deg;
+  animation: float 7.5s ease-in-out -3s infinite;
+}
+
+.sprinkle {
+  width: 7%;
+  aspect-ratio: 2.6 / 1;
+  border-radius: var(--r-pill);
+  box-shadow: 3px 4px 7px rgba(60, 55, 50, 0.28), inset 1px 1px 2px rgba(255, 255, 255, 0.6);
+}
+.sprinkle--pink { top: 2%; right: 18%; background: #F23D9B; transform: rotate(28deg); animation: float 6s ease-in-out -1s infinite; }
+.sprinkle--blue { top: 47%; right: -2%; background: #1AB8F5; transform: rotate(-35deg); animation: float 7s ease-in-out -3s infinite; }
+.sprinkle--yellow { bottom: 1%; left: 52%; background: #FFE61A; transform: rotate(62deg); animation: float 8s ease-in-out -5s infinite; }
+.sprinkle--green { top: 40%; left: 40%; background: #18A845; transform: rotate(-12deg); z-index: 3; animation: float 6.5s ease-in-out -2s infinite; }
+
+@keyframes float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -9px; }
+}
+
+/* ---------- Demo notice ---------------------------------------------- */
+.demo-notice {
+  display: flex;
+  justify-content: center;
+  padding: 24px var(--gutter) 40px;
+  text-align: center;
+}
+.demo-notice .clay-pill {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.4;
+  padding: 10px 20px;
+}

@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Cravins: About, Locations and footer (Phase 5)
+   ========================================================================== */
+
+.about,
+.locations {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 72px var(--gutter) 24px;
+}
+
+/* ---------- About ---------- */
+.about__copy {
+  max-width: 40rem;
+  margin: 22px auto 0;
+  text-align: center;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+.about__tiles { display: grid; gap: 16px; margin-top: 34px; }
+.about-tile {
+  padding: 24px 22px;
+  border-radius: var(--r-md);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+.about-tile__icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  border-radius: 50%;
+  color: var(--brand-dark);
+  background: linear-gradient(145deg, var(--brand-orange-hi), var(--brand-orange) 50%, var(--brand-orange-lo));
+  box-shadow: 3px 4px 8px rgba(110, 62, 8, 0.22), inset 2px 2px 4px rgba(255, 233, 200, 0.85);
+}
+.about-tile h3 { font-size: 1.25rem; }
+.about-tile p { margin-top: 8px; line-height: 1.5; color: var(--text-soft); }
+
+/* ---------- Locations ---------- */
+.state-filter { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
+.branch-status { margin-top: 16px; text-align: center; font-size: 0.9375rem; color: var(--text-soft); }
+
+.branch-grid { display: grid; gap: 18px; margin-top: 22px; }
+.branch-card {
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 20px;
+  border-radius: var(--r-md);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+.branch-card__state { font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--caramel); }
+.branch-card__name { margin: 4px 0 12px; font-size: 1.3125rem; line-height: 1.2; }
+.branch-card__row { margin-top: 8px; font-size: 0.9375rem; line-height: 1.45; }
+.branch-card__label { display: block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-soft); }
+.branch-card__actions { display: flex; gap: 10px; margin-top: auto; padding-top: 18px; }
+.branch-card__actions .clay-btn { flex: 1 1 0; min-width: 0; padding: 0 12px; }
+
+/* ---------- Footer ---------- */
+.site-footer {
+  max-width: var(--page-max);
+  margin: 56px auto 0;
+  padding: 0 var(--gutter) calc(28px + env(safe-area-inset-bottom));
+}
+.site-footer__panel {
+  display: grid;
+  gap: 28px;
+  padding: 30px 24px;
+  border-radius: var(--r-lg);
+  background: linear-gradient(145deg, var(--surface-hi), var(--surface) 55%, var(--surface-lo));
+  box-shadow: var(--clay-shadow), var(--clay-highlight);
+}
+.site-footer__brand img { width: 150px; height: auto; }
+.site-footer__tag { margin-top: 10px; font-family: var(--font-head); font-weight: 700; color: var(--caramel); }
+.site-footer h3 { margin-bottom: 10px; font-size: 1rem; }
+.site-footer ul { display: block; }
+.site-footer li + li { margin-top: 0; }
+.site-footer a:not(.clay-btn) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 6px 0;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur) var(--ease);
+}
+.site-footer a:not(.clay-btn):hover { text-decoration-color: currentColor; }
+.site-footer__fine { margin-top: 18px; text-align: center; font-size: 0.8125rem; color: var(--text-soft); }
+
+@media (min-width: 700px) {
+  .about__tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .branch-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .about, .locations { padding-top: 96px; }
+  .site-footer__panel { grid-template-columns: 1.4fr 1fr 1fr; padding: 36px 36px; }
+}
+@media (min-width: 1100px) {
+  .branch-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 819px) {
+  .about, .locations { padding-top: 56px; }
+}

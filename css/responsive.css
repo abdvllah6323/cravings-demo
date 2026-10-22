@@ -1,0 +1,160 @@
+/* ==========================================================================
+   Cravins: responsive layers (base styles are mobile-first)
+   ========================================================================== */
+
+/* Very small phones */
+@media (max-width: 359px) {
+  .brand__wordmark { display: none; }
+  .hero h1 { font-size: 2.5rem; }
+}
+
+/* Tablet and up: inline navigation */
+@media (min-width: 820px) {
+  :root { --nav-h: 72px; }
+
+  .clay-nav { padding: 0 12px 0 14px; }
+  .brand__badge { width: 48px; height: 48px; }
+  .brand__wordmark { width: 118px; }
+
+  .menu-toggle { display: none; }
+
+  /* Links sit inline in the bar, so the mobile panel styling is undone. */
+  .nav-links,
+  .js .nav-links {
+    position: static;
+    display: flex;
+    gap: 4px;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+  .nav-links a { padding: 10px 20px; }
+
+  .hero__cta .clay-btn { flex: 0 0 auto; }
+}
+
+/* Desktop: copy and visual side by side */
+@media (min-width: 960px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px);
+    min-height: 100vh;
+    padding-top: calc(var(--nav-h) + 40px);
+    padding-bottom: 32px;
+  }
+  .hero__visual { margin: 0; max-width: none; }
+  .hero h1 { font-size: clamp(3rem, 5.6vw, 5.5rem); }
+}
+
+/* Short landscape phones: don't force a full-height hero */
+@media (max-height: 520px) and (orientation: landscape) {
+  .hero { min-height: 0; }
+}
+
+/* ---------- Catalogue (Phase 2) ---------- */
+@media (min-width: 700px) {
+  .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 58px 20px; }
+  .product-card { padding: 0 14px 18px; }
+  .product-card__foot { flex-direction: row; align-items: center; justify-content: space-between; }
+  .flavour-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .menu { padding-top: 96px; }
+}
+
+@media (min-width: 900px) {
+  .product-card--builder {
+    display: grid;
+    grid-template-columns: minmax(260px, 360px) minmax(0, 1fr);
+    align-items: start;
+    gap: 36px;
+    padding: 32px;
+  }
+  .builder__visual { position: sticky; top: calc(var(--nav-h) + 40px); padding-top: 12px; }
+  .builder__photo { width: 100%; }
+}
+
+@media (min-width: 1100px) {
+  .category-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+  .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   Phone refinements (up to 819px only; tablet and desktop are untouched)
+   ========================================================================== */
+@media (max-width: 819px) {
+  /* Softer, tighter clay shadows on small screens. */
+  :root {
+    --clay-shadow:
+      6px 7px 15px rgba(58, 64, 76, 0.25),
+      -4px -4px 11px rgba(255, 255, 255, 0.7);
+    --clay-shadow-sm:
+      4px 5px 10px rgba(58, 64, 76, 0.22),
+      -3px -3px 8px rgba(255, 255, 255, 0.65);
+  }
+  .clay-btn--primary {
+    box-shadow:
+      5px 6px 12px rgba(110, 62, 8, 0.26),
+      -3px -3px 9px rgba(255, 255, 255, 0.4),
+      inset 3px 3px 5px rgba(255, 233, 200, 0.85),
+      inset -4px -4px 7px rgba(170, 85, 0, 0.24);
+  }
+  .hero h1 mark {
+    box-shadow:
+      4px 5px 10px rgba(110, 62, 8, 0.24),
+      -3px -3px 7px rgba(255, 255, 255, 0.35),
+      inset 2px 2px 4px rgba(255, 233, 200, 0.85),
+      inset -3px -3px 5px rgba(170, 85, 0, 0.22);
+  }
+
+  /* Hero: less empty space so the photos show sooner. */
+  .hero {
+    gap: 26px;
+    padding-top: calc(var(--nav-h) + 34px);
+    padding-bottom: 8px;
+  }
+  .eyebrow { margin-bottom: 14px; }
+  .lead { margin-top: 16px; font-size: 1.0625rem; }
+  .hero__cta { flex-wrap: nowrap; gap: 12px; margin-top: 22px; }
+  .hero__cta .clay-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 48px;
+    padding: 0 10px;
+    font-size: 0.9375rem;
+    text-align: center;
+  }
+  .menu { padding-top: 56px; }
+
+  /* Navigation dropdown: clearer rows, easier to tap. */
+  .nav-links {
+    top: calc(100% + 8px);
+    padding: 6px 8px;
+    border-radius: 24px;
+  }
+  .nav-links li + li { border-top: 1px solid rgba(100, 104, 112, 0.16); }
+  .nav-links a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 52px;
+    padding: 12px 14px;
+    border-radius: 16px;
+  }
+  .nav-links a::after {
+    content: "\203A";
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--caramel);
+  }
+}
+
+/* Very small phones: buttons go back to a stacked layout. */
+@media (max-width: 359px) {
+  .hero__cta { flex-wrap: wrap; }
+  .hero__cta .clay-btn { flex: 1 1 100%; }
+}
