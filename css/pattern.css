@@ -1,0 +1,26 @@
+/*  Doodle pattern texture (Phase 6).
+    Hand-drawn ice cream pattern blended into the warm-grey background.
+    Applied via a low-opacity overlay so product cards and photos keep
+    all the attention. */
+
+/* One continuous background for the entire website */
+body {
+  position: relative;
+  isolation: isolate;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image: url('../assets/images/pattern-doodle.jpg');
+  background-size: 320px 320px;
+  background-repeat: repeat;
+  background-position: top left;
+
+  opacity: 0.30;
+  mix-blend-mode: multiply;
+}
